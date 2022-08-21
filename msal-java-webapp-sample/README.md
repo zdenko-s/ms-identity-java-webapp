@@ -135,36 +135,7 @@ If you running you web application from an IDE, click on **run**, then navigate 
 
 If you would like to deploy the web sample to Tomcat, you will need to make a couple of changes to the source code.
 
-1. Open ms-identity-java-webapp/pom.xml
-    - Under `<name>msal-web-sample</name>` add `<packaging>war</packaging>`
-
-2. Open ms-identity-java-webapp/src/main/java/com.microsoft.azure.msalwebsample/MsalWebSampleApplication
-
-    - Delete all source code and replace with the following:
-
-   ```Java
-    package com.microsoft.azure.msalwebsample;
-
-    import org.springframework.boot.SpringApplication;
-    import org.springframework.boot.autoconfigure.SpringBootApplication;
-    import org.springframework.boot.builder.SpringApplicationBuilder;
-    import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-    @SpringBootApplication
-    public class MsalWebSampleApplication extends SpringBootServletInitializer {
-
-     public static void main(String[] args) {
-      SpringApplication.run(MsalWebSampleApplication.class, args);
-     }
-
-     @Override
-     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-      return builder.sources(MsalWebSampleApplication.class);
-     }
-    }
-   ```
-
-3.   Tomcat's default HTTP port is 8080, though an HTTPS connection over port 8443 is needed. To configure this:
+1.   Tomcat's default HTTP port is 8080, though an HTTPS connection over port 8443 is needed. To configure this:
         - Go to tomcat/conf/server.xml
         - Search for the `<connector>` tag, and replace the existing connector with:
         ```
@@ -176,13 +147,13 @@ If you would like to deploy the web sample to Tomcat, you will need to make a co
                    clientAuth="false" sslProtocol="TLS"/>
         ``` 
        
-4. Open a command prompt, go to the root folder of this sample (where the pom.xml file is located), and run `mvn package` to build the project
+1. Open a command prompt, go to the root folder of this sample (where the pom.xml file is located), and run `mvn package` to build the project
     - This will generate a `msal-web-sample-0.1.0.war` file in your /targets directory.
     - Rename this file to `msal4jsample.war`
     - Deploy this war file using Tomcat or any other J2EE container solution.
         - To deploy, copy the msal4jsample.war file to the `/webapps/` directory in your Tomcat installation, and then start the Tomcat server.
 
-5. Once deployed, go to https://localhost:8443/msal4jsample in your browser
+1. Once deployed, go to https://localhost:8443/msal4jsample in your browser
 
 
 ### You're done

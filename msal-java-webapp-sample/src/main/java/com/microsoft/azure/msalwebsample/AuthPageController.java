@@ -32,12 +32,12 @@ public class AuthPageController {
     @Autowired
     AuthHelper authHelper;
 
-    @RequestMapping("/msal4jsample")
+    @RequestMapping(value = {"/msal4jsample", "/", ""})
     public String homepage(){
         return "index";
     }
 
-    @RequestMapping("/msal4jsample/secure/aad")
+    @RequestMapping(value = {"/msal4jsample/secure/aad", "/secure/aad"})
     public ModelAndView securePage(HttpServletRequest httpRequest) throws ParseException {
         ModelAndView mav = new ModelAndView("auth_page");
 
@@ -46,7 +46,7 @@ public class AuthPageController {
         return mav;
     }
 
-    @RequestMapping("/msal4jsample/sign_out")
+    @RequestMapping(value = {"/msal4jsample/sign_out", "/sign_out"})
     public void signOut(HttpServletRequest httpRequest, HttpServletResponse response) throws IOException {
 
         httpRequest.getSession().invalidate();
@@ -58,7 +58,7 @@ public class AuthPageController {
                 URLEncoder.encode(redirectUrl, "UTF-8"));
     }
 
-    @RequestMapping("/msal4jsample/graph/me")
+    @RequestMapping(value = {"/msal4jsample/graph/me", "/graph/me"})
     public ModelAndView getUserFromGraph(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
             throws Throwable {
 
